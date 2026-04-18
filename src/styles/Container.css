@@ -1,0 +1,12 @@
+.addButton:hover{
+    background-color: #201F1F;
+    cursor: pointer;
+}
+.addButton{ 
+    width: 170px;
+    background-color: #000000;
+    border: 1px solid #000000;
+    border-radius: 6px;
+    height: 32px;
+    cursor: pointer;
+}

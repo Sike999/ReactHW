@@ -1,13 +1,9 @@
-import Card from '../components/Card.jsx'
-import Header from '../components/Header.jsx'
-import Footer from '../components/Footer.jsx'
 import Filter from '../components/Filter.jsx'
 import RedBanner from '../components/RedBanner.jsx'
-import '../styles/Home.css'
-export default function Home({products}) {
-    return (
-        <>
-        <Header />
+import Card from '../components/Card.jsx'
+import '../styles/Market.css'
+export default function Market({products,cart,setCart,category,setCategory}){
+    return(
         <div className='mainContainer'>
             <div className='leftContent'>
                 <Filter products={products}/>
@@ -27,12 +23,10 @@ export default function Home({products}) {
                 </div>
                 <div className='cardSection'>
                     {products.map((element, index) => (
-                        <Card key={element.id} images={element.images} make={element.make} model={element.model} price={element.price} isSpecialOffer={element.isSpecialOffer}/>
+                        <Card key={element.id} cart={cart} id = {element.id} products={products} setCart={setCart} images={element.images} make={element.make} model={element.model} price={element.price} isSpecialOffer={element.isSpecialOffer}/>
                     ))}
                 </div>
             </div>
         </div>
-        <Footer />
-        </>
     )
 }

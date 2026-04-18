@@ -1,10 +1,4 @@
-.addButton{ 
-    width: 170px;
-    background-color: #000000;
-    border: 1px solid #000000;
-    border-radius: 6px;
-    height: 32px;
-}
+
 img {
     height: 190px;
     width: 200px;
@@ -35,9 +29,7 @@ p{
 .Card:hover{
     box-shadow: 0 0 6px #808080;
 }
-.addButton:hover{
-    background-color: #201F1F;
-}
+
 .favouriteInactive{
     display: flex;
     justify-content: center;

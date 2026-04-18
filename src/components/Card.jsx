@@ -3,12 +3,25 @@ import { useState } from 'react';
 import { AiOutlineHeart, AiFillHeart, } from "react-icons/ai";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { useEffect } from 'react';
-export default function Card({ images, make, model, price, isSpecialOffer }) {
+export default function Card({ products, id, images, make, model, price, isSpecialOffer, cart, setCart }) {
     const [isCardHovered,setIsCardHovered] = useState(false);
     const [isFavourite,setIsFavourite] =  useState(false);
     const [isAdded,setIsAdded] =  useState(false);
     const [inCartNumber, setInCartNumber] = useState(1);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
+    console.log(cart)
+    const handleAdding = () => {
+        setCart((prev) => (
+            {...prev, [id]: (prev[id] || 0) + 1 }
+        ))
+        console.log(cart)
+    }
+    const handleDeleting = () => {
+        setCart((prev) => (
+            {...prev, [id]: (prev[id] || 0) - 1 }
+        ))
+        console.log(cart)
+    }
     useEffect(() =>{
             if(inCartNumber === 0) {
                 setIsAdded(false)
@@ -22,12 +35,12 @@ export default function Card({ images, make, model, price, isSpecialOffer }) {
         <div className='Card' onMouseEnter={() => {setIsCardHovered(true)}} onMouseLeave={() => {setIsCardHovered(false)}}>
             {isCardHovered && (
                 <>
-                {isFavourite ? (<span className='favouriteActive' onClick={() => {isFavourite ? setIsFavourite(false) : setIsFavourite(true)}}><AiFillHeart style={{color:"#FFFFFF"}}/></span>) 
-                : (<span className='favouriteInactive' onClick={() => {isFavourite ? setIsFavourite(false) : setIsFavourite(true)}}><AiOutlineHeart /></span>)}
+                {isFavourite ? (<span className='favouriteActive' onClick={() => {isFavourite ? setIsFavourite(false) : setIsFavourite(true)}}><AiFillHeart style={{color:"#FFFFFF", cursor: "pointer"}}/></span>) 
+                : (<span className='favouriteInactive' onClick={() => {isFavourite ? setIsFavourite(false) : setIsFavourite(true)}}><AiOutlineHeart style={{cursor: "pointer"}}/></span>)}
                 {images.length > 1 && (
                     <>
-                        <IoIosArrowBack className='arrow' style={{left:"4px"}} onClick={() => {setCurrentImageIndex((prev) => prev - 1)}}/>
-                        <IoIosArrowForward className='arrow' style={{left:"170px"}} onClick={() => {setCurrentImageIndex((prev) => prev + 1)}}/>
+                        <IoIosArrowBack className='arrow' style={{left:"4px", cursor: "pointer"}} onClick={() => {setCurrentImageIndex((prev) => prev - 1)}}/>
+                        <IoIosArrowForward className='arrow' style={{left:"170px", cursor: "pointer"}} onClick={() => {setCurrentImageIndex((prev) => prev + 1)}}/>
                     </>
                 )}
                 </>
@@ -44,12 +57,12 @@ export default function Card({ images, make, model, price, isSpecialOffer }) {
                 {
                     isAdded ? 
                     <div>
-                        <button className='addMore' style={{backgroundColor:"#ECEEF2",color:"black"}} onClick={() => { setInCartNumber((prev) => {return prev - 1}) }}> - </button>
+                        <button className='addMore' style={{backgroundColor:"#ECEEF2",color:"black"}} onClick={() => { setInCartNumber((prev) => {return prev - 1}); handleDeleting() }}> - </button>
                         <span style={{fontSize:"15px", margin:"0 17px 0 17px"}}>{inCartNumber} in cart</span>
-                        <button className='addMore' style={{backgroundColor:"#000000",}} onClick={() => { setInCartNumber((prev) => { return prev + 1}) }}> + </button>
+                        <button className='addMore' style={{backgroundColor:"#000000",}} onClick={() => { setInCartNumber((prev) => { return prev + 1}); handleAdding() }}> + </button>
                     </div> 
                     : 
-                    <button className="addButton" onClick={() => { isAdded ? setIsAdded(false) : setIsAdded(true)}}>Add to cart</button>
+                    <button className="addButton" onClick={() => {isAdded ? setIsAdded(false) : setIsAdded(true); handleAdding()}}>Add to cart</button>
                 }
             </div>
         </div>

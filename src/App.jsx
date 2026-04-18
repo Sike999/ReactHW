@@ -1,13 +1,13 @@
 import { useState } from 'react'
 import products from './data/products.js'
-import Home from './pages/Home.jsx'
+import Container from './pages/Container.jsx'
 import './App.css'
 
 function App() {
   return (
     <>
-      <Home products={products.filter((products) => (products.category === 'tv'))}>
-      </Home>
+      <Container products={products}>
+      </Container>
     </>
   )
 }
