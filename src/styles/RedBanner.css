@@ -1,0 +1,28 @@
+.redBanner{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    height: 130px;
+    background-color: #D4183D;
+    border-radius: 10px;
+    position: relative;
+    color: #FFFFFF;
+    padding: 0;
+}
+.close {
+    position: absolute;
+    top: 3px;
+    left: 220px;
+    color: #FFFFFF;
+}
+.timeIcon {
+    margin-left:20px;
+    color: #FFFFFF;
+    margin-right:-20px;
+}
+.pBanner{
+    white-space: wrap;
+    color:#FFFFFF;
+    font-size:12px;
+}

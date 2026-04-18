@@ -1,0 +1,89 @@
+.addButton{ 
+    width: 170px;
+    background-color: #000000;
+    border: 1px solid #000000;
+    border-radius: 6px;
+    height: 32px;
+}
+img {
+    height: 190px;
+    width: 200px;
+    border-radius: 6px 6px 0 0;
+    object-fit: cover;
+    user-select: none;
+}
+p{
+    color:black;
+    font-size:14px;
+    text-align: left;
+    margin-left: 22px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.Card {
+
+    width: 200px;
+    height: 330px;
+    background-color: #FFFFFF;
+    display:flex;
+    flex-direction:column;
+    border-radius: 6px;
+    border: 1px solid #E2E2E2;
+    position: relative;
+}
+.Card:hover{
+    box-shadow: 0 0 6px #808080;
+}
+.addButton:hover{
+    background-color: #201F1F;
+}
+.favouriteInactive{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 28px;
+    height: 28px;
+    background-color: #FFFFFF;
+    position: absolute;
+    top: 8px;
+    left:164px;
+    border-radius: 4px;
+}
+.favouriteActive{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 28px;
+    height: 28px;
+    background-color: #D4183D;  
+    position: absolute;
+    top: 8px;
+    left:164px;
+    border-radius: 4px;
+}
+.addMore{
+    width: 34px;
+    height: 34px;
+    font-size: 20px;
+    border-radius: 6px;
+    border:none;
+}
+.specialOffer{
+    position: absolute;
+    top: 8px;
+    left:8px;
+    border-radius: 4px;
+    color:#FFFFFF;
+    font-size: 10px;
+    background-color: #D4183D;
+    padding: 0 6px 0 6px;
+    user-select: none;
+}
+.arrow {
+    position: absolute;
+    background-color: #ECEEF2;
+    padding: 4px;
+    border-radius: 14px;
+    top:86px;
+}

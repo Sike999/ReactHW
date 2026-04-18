@@ -1,0 +1,25 @@
+.mainContainer{
+    display: flex;
+    margin: 30px auto;
+    width: 100%;
+    padding: 0 20px;
+    max-width: 1400px;
+    box-sizing: border-box;
+}
+.leftContent{
+    flex-shrink: 0;
+    width: 250px;
+}
+.rightContent{
+    width: 100%;
+    flex: 1;
+    min-width: 0;
+}
+.cardSection {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
