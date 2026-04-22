@@ -4,7 +4,6 @@ export default function Filter({ products }) {
     const unique = [... new Set(
         products.map(product => product.brand)
     )]
-    console.log(unique)
     return(
         <div className="Filter">
             <p style={{fontSize:"14pt",marginTop:"14px"}}>Filters</p>

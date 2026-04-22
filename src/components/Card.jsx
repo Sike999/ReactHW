@@ -7,30 +7,34 @@ export default function Card({ products, id, images, make, model, price, isSpeci
     const [isCardHovered,setIsCardHovered] = useState(false);
     const [isFavourite,setIsFavourite] =  useState(false);
     const [isAdded,setIsAdded] =  useState(false);
-    const [inCartNumber, setInCartNumber] = useState(1);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
-    console.log(cart)
+    
     const handleAdding = () => {
         setCart((prev) => (
             {...prev, [id]: (prev[id] || 0) + 1 }
         ))
-        console.log(cart)
     }
     const handleDeleting = () => {
-        setCart((prev) => (
-            {...prev, [id]: (prev[id] || 0) - 1 }
-        ))
-        console.log(cart)
+        const quantity = cart[id]
+        if(quantity === 1){
+            const newCart = {...cart}
+            delete newCart[id]
+            setCart(newCart)
+        }
+        else{
+            setCart((prev) => (
+                {...prev, [id]: (prev[id] || 0) - 1 }
+            ))
+        }
     }
     useEffect(() =>{
-            if(inCartNumber === 0) {
+            if(cart[id] === undefined) {
                 setIsAdded(false)
-                setInCartNumber(1)
             }
 
             if(currentImageIndex === images.length) setCurrentImageIndex(0)
             if(currentImageIndex === -1) setCurrentImageIndex(images.length-1)
-    }, [inCartNumber, setInCartNumber,currentImageIndex,setCurrentImageIndex])
+    }, [currentImageIndex,setCurrentImageIndex,cart])
     return(
         <div className='Card' onMouseEnter={() => {setIsCardHovered(true)}} onMouseLeave={() => {setIsCardHovered(false)}}>
             {isCardHovered && (
@@ -57,9 +61,9 @@ export default function Card({ products, id, images, make, model, price, isSpeci
                 {
                     isAdded ? 
                     <div>
-                        <button className='addMore' style={{backgroundColor:"#ECEEF2",color:"black"}} onClick={() => { setInCartNumber((prev) => {return prev - 1}); handleDeleting() }}> - </button>
-                        <span style={{fontSize:"15px", margin:"0 17px 0 17px"}}>{inCartNumber} in cart</span>
-                        <button className='addMore' style={{backgroundColor:"#000000",}} onClick={() => { setInCartNumber((prev) => { return prev + 1}); handleAdding() }}> + </button>
+                        <button className='addMore' style={{backgroundColor:"#ECEEF2",color:"black"}} onClick={() => { handleDeleting() }}> - </button>
+                        <span style={{fontSize:"15px", margin:"0 17px 0 17px"}}>{cart[id]} in cart</span>
+                        <button className='addMore' style={{backgroundColor:"#000000",}} onClick={() => { handleAdding() }}> + </button>
                     </div> 
                     : 
                     <button className="addButton" onClick={() => {isAdded ? setIsAdded(false) : setIsAdded(true); handleAdding()}}>Add to cart</button>
