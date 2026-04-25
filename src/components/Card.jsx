@@ -2,39 +2,27 @@ import '../styles/Card.css'
 import { useState } from 'react';
 import { AiOutlineHeart, AiFillHeart, } from "react-icons/ai";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import { useEffect } from 'react';
-export default function Card({ products, id, images, make, model, price, isSpecialOffer, cart, setCart }) {
+import { useEffect, useLayoutEffect, memo } from 'react';
+import { useHandlers } from '../pages/Container';
+export default function Card({ id, images, make, model, price, isSpecialOffer, cart, setCart }) {
     const [isCardHovered,setIsCardHovered] = useState(false);
     const [isFavourite,setIsFavourite] =  useState(false);
     const [isAdded,setIsAdded] =  useState(false);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     
-    const handleAdding = () => {
-        setCart((prev) => (
-            {...prev, [id]: (prev[id] || 0) + 1 }
-        ))
-    }
-    const handleDeleting = () => {
-        const quantity = cart[id]
-        if(quantity === 1){
-            const newCart = {...cart}
-            delete newCart[id]
-            setCart(newCart)
-        }
-        else{
-            setCart((prev) => (
-                {...prev, [id]: (prev[id] || 0) - 1 }
-            ))
-        }
-    }
+    const {handleAdding,handleDeleting} = useHandlers()
+
     useEffect(() =>{
             if(cart[id] === undefined) {
                 setIsAdded(false)
             }
+    }, [cart])
 
-            if(currentImageIndex === images.length) setCurrentImageIndex(0)
-            if(currentImageIndex === -1) setCurrentImageIndex(images.length-1)
-    }, [currentImageIndex,setCurrentImageIndex,cart])
+    useLayoutEffect (() => {
+        if(currentImageIndex === images.length) setCurrentImageIndex(0)
+        if(currentImageIndex === -1) setCurrentImageIndex(images.length-1)
+    },[currentImageIndex])
+
     return(
         <div className='Card' onMouseEnter={() => {setIsCardHovered(true)}} onMouseLeave={() => {setIsCardHovered(false)}}>
             {isCardHovered && (
@@ -61,12 +49,12 @@ export default function Card({ products, id, images, make, model, price, isSpeci
                 {
                     isAdded ? 
                     <div>
-                        <button className='addMore' style={{backgroundColor:"#ECEEF2",color:"black"}} onClick={() => { handleDeleting() }}> - </button>
+                        <button className='addMore addButtonAlt' onClick={() => handleDeleting(id,cart,setCart) }> - </button>
                         <span style={{fontSize:"15px", margin:"0 17px 0 17px"}}>{cart[id]} in cart</span>
-                        <button className='addMore' style={{backgroundColor:"#000000",}} onClick={() => { handleAdding() }}> + </button>
+                        <button className='addMore addButton' onClick={() => handleAdding(id,setCart)}> + </button>
                     </div> 
                     : 
-                    <button className="addButton" onClick={() => {isAdded ? setIsAdded(false) : setIsAdded(true); handleAdding()}}>Add to cart</button>
+                    <button className="addButton" onClick={() => {isAdded ? setIsAdded(false) : setIsAdded(true); handleAdding(id,setCart)}}>Add to cart</button>
                 }
             </div>
         </div>

@@ -54,12 +54,13 @@ p{
     left:164px;
     border-radius: 4px;
 }
-.addMore{
+.addButton.addMore,
+.addButtonAlt.addMore {
     width: 34px;
     height: 34px;
     font-size: 20px;
     border-radius: 6px;
-    border:none;
+    border: 1px solid #ECEEF2;
 }
 .specialOffer{
     position: absolute;

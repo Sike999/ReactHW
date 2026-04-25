@@ -1,10 +1,13 @@
 import '../styles/Cart.css'
 import OrderSummary from '../components/OrderSummary'
-export default function Cart({cart,setCart,category,setCategory}){
-    console.log(cart.length)
+import InCartItems from '../components/inCartItems'
+export default function Cart({originalProducts,cart,setCart,category,setCategory}){
+    console.log(cart)
     return(
         <>
-        <h3 style={{textAlign:"left"}}>Shopping Cart</h3>
+        <h3 style={{display: "flex", alignSelf:"left"}}>Shopping Cart</h3>
+        <div style={{minHeight:"700px",display:"flex",flexDirection:"column",alignItems:"center"}}>
+        
             {Object.keys(cart).length === 0 ? 
                 <div className='emptyCart'>
                   <p style={{marginBottom:"15px", color:"gray"}}>Your cart is empty</p>
@@ -12,13 +15,14 @@ export default function Cart({cart,setCart,category,setCategory}){
                 </div> 
              :  <div className='itemsAndSummary'>
                     <div style={{display:"flex",flexDirection:"column", width:"70%"}}>
-                        {Object.values(cart).forEach(item => (
-                            <></>
+                        {Object.keys(cart).map(item => (
+                            (<InCartItems setCart={setCart} id={Number(item)} quantity={cart[item]} cart={cart} product={originalProducts.find(product => (product.id === Number(item)))}/>)
                         ))}
                     </div>
-                    <OrderSummary/>
+                    <OrderSummary originalProducts={originalProducts} cart={cart} setCategory={setCategory}/>
                 </div>
             }
+        </div>
         </>
     )
 }
