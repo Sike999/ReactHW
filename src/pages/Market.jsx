@@ -1,13 +1,14 @@
 import Filter from '../components/Filter.jsx'
 import RedBanner from '../components/RedBanner.jsx'
 import Card from '../components/Card.jsx'
+import WeatherWidget from '../components/WeatherWidget.jsx'
 import '../styles/Market.css'
 import { useCallback, useLayoutEffect, useState, useMemo, useRef } from 'react'
 
 export default function Market({setProducts,products,originalProducts,cart,setCart,category,setCategory}){
     const sortRef = useRef(null)
     const [sortValue, setSortValue] = useState('Low to High')
-
+    const [showBanner, setShowBanner] = useState(true)
     const sortedProducts = useMemo(() => {
         const copy = [...products]
         if (sortValue === 'Low to High') {
@@ -22,7 +23,8 @@ export default function Market({setProducts,products,originalProducts,cart,setCa
         <div className='mainContainer'>
             <div className='leftContent'>
                 <Filter category={category} setProducts={setProducts} products={products} originalProducts={originalProducts}/>
-                <RedBanner />
+                <WeatherWidget />
+                {showBanner && <RedBanner showBanner={showBanner} setShowBanner={setShowBanner}/>}
             </div>
             <div className='rightContent'>
                 <div style={{display:"flex", justifyContent:"space-between"}}>
