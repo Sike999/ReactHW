@@ -1,0 +1,14 @@
+.inCartItems{
+    width: 550px;
+    height: 96px;
+    border-radius: 10px;
+    border: 1px solid #E2E2E2;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+.inCartImg{
+    width: 96px;
+    height: 96px;
+    border-radius: 10px;
+}
