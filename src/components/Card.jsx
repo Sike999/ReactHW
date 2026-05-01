@@ -27,8 +27,7 @@ export default function Card({ id, images, make, model, price, isSpecialOffer, c
         <div className='Card' onMouseEnter={() => {setIsCardHovered(true)}} onMouseLeave={() => {setIsCardHovered(false)}}>
             {isCardHovered && (
                 <>
-                {isFavourite ? (<span className='favouriteActive' onClick={() => {isFavourite ? setIsFavourite(false) : setIsFavourite(true)}}><AiFillHeart style={{color:"#FFFFFF", cursor: "pointer"}}/></span>) 
-                : (<span className='favouriteInactive' onClick={() => {isFavourite ? setIsFavourite(false) : setIsFavourite(true)}}><AiOutlineHeart style={{cursor: "pointer"}}/></span>)}
+                <span className={isFavourite ? 'favouriteActive' : 'favouriteInactive'} onClick={() => {setIsFavourite(prev => !prev)}}>{isFavourite ? <AiFillHeart style={{color:"#FFFFFF", cursor: "pointer"}}/> : <AiOutlineHeart style={{cursor: "pointer"}}/>}</span>
                 {images.length > 1 && (
                     <>
                         <IoIosArrowBack className='arrow' style={{left:"4px", cursor: "pointer"}} onClick={() => {setCurrentImageIndex((prev) => prev - 1)}}/>
@@ -45,7 +44,7 @@ export default function Card({ id, images, make, model, price, isSpecialOffer, c
             <div>
                 <p style={{fontSize:"12px",color:"gray", marginTop:"8px"}}>{make}</p>
                 <p style={{fontWeight:"550",marginBottom:"10px"}}>{model}</p>
-                <p>${price}</p>
+                <p>${price.toLocaleString()}</p>
                 {
                     isAdded ? 
                     <div>

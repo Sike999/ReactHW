@@ -1,18 +1,15 @@
 import { useState,useMemo, useRef } from 'react'
-import products1 from './data/products.js' 
+import productsData from './data/products.js' 
 import Container from './pages/Container.jsx'
 import './App.css'
 
 
 
 function App() {
-  const [products, setProducts] = useState(products1)
-  const originalProducts = useRef(structuredClone(products1))
+  const [products, setProducts] = useState(productsData)
+  const originalProducts = useRef(structuredClone(productsData))
   return (
-    <>
-      <Container originalProducts={originalProducts.current} products={products} setProducts={setProducts}>
-      </Container>
-    </>
+      <Container originalProducts={originalProducts.current} products={products} setProducts={setProducts}/>
   )
 }
 
