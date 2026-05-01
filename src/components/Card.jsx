@@ -44,7 +44,7 @@ export default function Card({ id, images, make, model, price, isSpecialOffer, c
             <div>
                 <p style={{fontSize:"12px",color:"gray", marginTop:"8px"}}>{make}</p>
                 <p style={{fontWeight:"550",marginBottom:"10px"}}>{model}</p>
-                <p>${price.toLocaleString()}</p>
+                <p>${price.toLocaleString('en-US')}</p>
                 {
                     isAdded ? 
                     <div>

@@ -1,16 +1,39 @@
 const apiKey = import.meta.env.VITE_OPENWEATHER_API_KEY
+const geoKey = import.meta.env.VITE_GEOCODER_API_KEY
 import '../styles/WeatherWidget.css'
-import { useEffect, useState, useRef} from 'react'
+import { useEffect, useState, useRef } from 'react'
 export default function WeatherWidget(){
     const [loading, setLoading] = useState(true);
-    const [city, setCity] = useState('Tyumen');
+    const [city, setCity] = useState(null);
     const [weather, setWeather] = useState(null);
     const [errMessage, setErrMessage] = useState(null)
-    const [inputValue, setInputValue] = useState('Tyumen')
+    const [inputValue, setInputValue] = useState('')
     const unluckyCities = useRef([])
+
+    const userLat = useRef(null)
+    const userLon = useRef(null)
+    useEffect(() => {
+    const userCoords = async () => {
+        return new Promise((resolve,reject) => {
+            navigator.geolocation.getCurrentPosition(resolve,reject)
+        })
+    }
+    const fetchGeo = async (position) => {
+        userLat.current = position.coords.latitude
+        userLon.current = position.coords.longitude;
+        const responce = await fetch(`https://cors-anywhere.herokuapp.com/https://geocode.maps.co/reverse?lat=${userLat.current}&lon=${userLon.current}&api_key=${geoKey}`)
+        const data = await responce.json()
+        setCity(data.address.city)
+    }
+    userCoords().then(fetchGeo).catch((err) => {
+        setCity('Tyumen')
+    })
+    },[])
+    
     useEffect(() => {
         const abortController = new AbortController();
         const fetchWeather = async () => {
+            if(!city) return
             setErrMessage(null)
             setLoading(true);
             const responce = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`,{signal: abortController.signal})
