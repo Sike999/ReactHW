@@ -4,7 +4,6 @@ import Card from '../components/Card.jsx'
 import WeatherWidget from '../components/WeatherWidget.jsx'
 import '../styles/Market.css'
 import { useCallback, useLayoutEffect, useState, useMemo, useRef } from 'react'
-import { createPortal } from 'react-dom'
 
 export default function Market({setProducts,products,originalProducts,cart,setCart,category,setCategory}){
     const sortRef = useRef(null)

@@ -1,8 +1,13 @@
 import '../styles/Header.css'
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { AiOutlineShoppingCart, AiOutlineUser } from 'react-icons/ai'
+import Portal from './Portal';
+import LoginForm from './LoginForm';
 export default function Header({sum,cart,setCart,category,setCategory}) {
-    
+    const [isPortalOpen,setIsPortalOpen] = useState(false)
+    useEffect(() => {
+        console.log(isPortalOpen)
+    },[isPortalOpen])
     return(
         <header>
             <div className='half'>
@@ -16,8 +21,13 @@ export default function Header({sum,cart,setCart,category,setCategory}) {
                     <div className='quantityIndicator'>{sum}</div>
                 )}
                 <a onClick={() => {setCategory('cart')}}><AiOutlineShoppingCart style={{width:"26px",height:"26px"}}/></a>
-                <a><AiOutlineUser style={{width:"26px",height:"26px"}}/></a>
+                <a><AiOutlineUser style={{width:"26px",height:"26px"}} onClick={() => {setIsPortalOpen(true)}}/></a>
             </div>
+            {isPortalOpen && (
+                <Portal onClose={() => {setIsPortalOpen(false)}}>
+                    <LoginForm onClose={() => {setIsPortalOpen(false)}} />
+                </Portal>
+            )}
         </header>
     )
 }
