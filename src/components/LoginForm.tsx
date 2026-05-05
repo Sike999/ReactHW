@@ -1,7 +1,8 @@
+// @ts-expect-error - CSS import
 import '../styles/LoginForm.css'
 import { IoIosClose } from "react-icons/io";
-export default function LoginForm({onClose}) {
-    // Заглушка
+export default function LoginForm({ onClose }) {
+    // Форма заглушка
     return(
         <>
         <form className='loginForm'>

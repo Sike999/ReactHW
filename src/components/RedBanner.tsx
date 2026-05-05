@@ -1,30 +1,31 @@
 import { IoIosClose,IoMdTime } from "react-icons/io";
+// @ts-expect-error - CSS import
 import '../styles/RedBanner.css'
 import { useEffect, useState, useRef } from "react";
 import { IoStop,IoPlay, } from "react-icons/io5";
 import { MdOutlineRestartAlt } from "react-icons/md";
-export default function RedBanner({showBanner, setShowBanner}) {
-    const [playFlag, setPlayFlag] = useState(true)
+export default function RedBanner({ setShowBanner } : {setShowBanner: React.Dispatch<React.SetStateAction<boolean>>}) {
+    const [playFlag, setPlayFlag] = useState<boolean>(true)
 
-    const initialTime = useRef(3599000)
-    const [time,setTime] = useState(initialTime.current)
-    const intervalRef = useRef(null);
-    const timeRef = useRef(initialTime.current)
-    const [isTimerOut, setIsTimerOut] = useState(false)
+    const initialTime = useRef<number>(3599000)
+    const [time,setTime] = useState<number | string>(initialTime.current)
+    const intervalRef = useRef<number | null>(null);
+    const timeRef = useRef<number>(initialTime.current)
+    const [isTimerOut, setIsTimerOut] = useState<boolean>(false)
     useEffect(() => {
         if (playFlag && timeRef.current > 0) {
             intervalRef.current = setInterval(() => {
                 timeRef.current -= 1000;
                 setTime(timeRef.current)
                 if(timeRef.current <= 0) {
-                    clearInterval(intervalRef.current)
+                    clearInterval(intervalRef.current || undefined)
                     setTime('Timer is out')
                     setIsTimerOut(true)
                     setPlayFlag(false)
                 }
             },1000)
         }
-        return () => clearInterval(intervalRef.current)
+        return () => clearInterval(intervalRef.current || undefined)
     },[playFlag])
     
 

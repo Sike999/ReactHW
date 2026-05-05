@@ -7,8 +7,8 @@ import '../styles/Market.css'
 import { useState, useMemo, } from 'react'
 
 export default function Market({setProducts,products,originalProducts,cart,setCart,category} : {setProducts: React.Dispatch<React.SetStateAction<ProductsArrayType>>,products: ProductsArrayType,originalProducts: ProductsArrayType,cart: CartType,setCart: React.Dispatch<React.SetStateAction<CartType>>,category: string}){
-    const [sortValue, setSortValue] = useState('Low to High')
-    const [showBanner, setShowBanner] = useState(true)
+    const [sortValue, setSortValue] = useState<string>('Low to High')
+    const [showBanner, setShowBanner] = useState<boolean>(true)
     const sortedProducts = useMemo(() => {
         const copy = [...products]
         if (sortValue === 'Low to High') {
@@ -24,7 +24,7 @@ export default function Market({setProducts,products,originalProducts,cart,setCa
             <div className='leftContent'>
                 <Filter category={category} setProducts={setProducts} products={products} originalProducts={originalProducts}/>
                 <WeatherWidget />
-                {showBanner && <RedBanner showBanner={showBanner} setShowBanner={setShowBanner}/>}
+                {showBanner && <RedBanner setShowBanner={setShowBanner}/>}
             </div>
             <div className='rightContent'>
                 <div style={{display:"flex", justifyContent:"space-between"}}>

@@ -32,7 +32,7 @@ export default function Container({originalProducts,setProducts,products} : {ori
 
     const [category, setCategory] = useState<string>('tv')
     const [cart, setCart] = useState<CartType>({})
-    const [sum, setSum] = useState(0)
+    const [sum, setSum] = useState<number>(0)
 
     useEffect(() => {
         const filtered = originalProducts.filter(p => p.category === category)
@@ -45,8 +45,8 @@ export default function Container({originalProducts,setProducts,products} : {ori
 
     return (
         <handlers.Provider value={{handleAdding,handleDeleting}}>
-            <Header cart={cart} sum={sum} setCart={setCart} category={category} setCategory={setCategory} />
-                { category === 'cart' ? <Cart originalProducts={originalProducts} category={category} setCategory={setCategory} cart={cart} setCart={setCart}/> 
+            <Header cart={cart} sum={sum} category={category} setCategory={setCategory} />
+                { category === 'cart' ? <Cart originalProducts={originalProducts} setCategory={setCategory} cart={cart} setCart={setCart}/> 
                 : <Market originalProducts={originalProducts} setProducts={setProducts} products={products} cart={cart} setCart={setCart} category={category}/> }
             <Footer />
         </handlers.Provider>

@@ -1,8 +1,8 @@
+// @ts-expect-error - CSS import
 import '../styles/Cart.css'
 import OrderSummary from '../components/OrderSummary'
 import InCartItems from '../components/inCartItems'
-export default function Cart({originalProducts,cart,setCart,category,setCategory}){
-    console.log(cart)
+export default function Cart({originalProducts,cart,setCart,setCategory} : {originalProducts: ProductsArrayType,cart:CartType, setCart: React.Dispatch<React.SetStateAction<CartType>>,setCategory: React.Dispatch<React.SetStateAction<string>>}){
     return(
         <>
         <h3 style={{display: "flex", alignSelf:"left"}}>Shopping Cart</h3>

@@ -1,3 +1,4 @@
+// @ts-expect-error - CSS import
 import '../styles/Footer.css'
 export default function Footer() {
     return(

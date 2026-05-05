@@ -1,13 +1,11 @@
+// @ts-expect-error - CSS import
 import '../styles/Header.css'
 import { useState,useEffect } from 'react';
 import { AiOutlineShoppingCart, AiOutlineUser } from 'react-icons/ai'
 import Portal from './Portal';
 import LoginForm from './LoginForm';
-export default function Header({sum,cart,setCart,category,setCategory}) {
-    const [isPortalOpen,setIsPortalOpen] = useState(false)
-    useEffect(() => {
-        console.log(isPortalOpen)
-    },[isPortalOpen])
+export default function Header({sum,cart,category,setCategory} : {sum: number, cart: CartType, category: string, setCategory: React.Dispatch<React.SetStateAction<string>>}) {
+    const [isPortalOpen,setIsPortalOpen] = useState<boolean>(false)
     return(
         <header>
             <div className='half'>

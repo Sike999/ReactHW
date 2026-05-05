@@ -1,11 +1,12 @@
+// @ts-expect-error - CSS import
 import '../styles/OrderSummary.css'
 import { useMemo } from 'react';
-export default function OrderSummary({originalProducts,cart,category,setCategory,products}) {
+export default function OrderSummary({originalProducts,cart,setCategory} : {originalProducts: ProductsArrayType,cart:CartType,setCategory: React.Dispatch<React.SetStateAction<string>>}) {
     const subTotal = useMemo(() => {
         let subTotal = 0;
         for(const elem in cart){
             const product = originalProducts.find((product) => (product.id === Number(elem)))
-            if(product.id === Number(elem)){
+            if(product && product.id === Number(elem)){
                 subTotal += product.price * cart[elem]
             }
         }

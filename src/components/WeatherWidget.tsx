@@ -1,17 +1,17 @@
 const apiKey = import.meta.env.VITE_OPENWEATHER_API_KEY
 const geoKey = import.meta.env.VITE_GEOCODER_API_KEY
+// @ts-expect-error - CSS import
 import '../styles/WeatherWidget.css'
 import { useEffect, useState, useRef } from 'react'
 export default function WeatherWidget(){
-    const [loading, setLoading] = useState(true);
-    const [city, setCity] = useState(null);
-    const [weather, setWeather] = useState(null);
-    const [errMessage, setErrMessage] = useState(null)
-    const [inputValue, setInputValue] = useState('')
-    const unluckyCities = useRef([])
-
-    const userLat = useRef(null)
-    const userLon = useRef(null)
+    const [loading, setLoading] = useState<boolean>(true);
+    const [city, setCity] = useState<string | null>(null);
+    const [weather, setWeather] = useState<object | null>(null);
+    const [errMessage, setErrMessage] = useState<string | null>(null)
+    const [inputValue, setInputValue] = useState<string>('')
+    const unluckyCities = useRef<Array<string>>([])
+    const userLat = useRef<number | null>(null)
+    const userLon = useRef<number | null>(null)
     useEffect(() => {
     const userCoords = async () => {
         return new Promise((resolve,reject) => {
@@ -25,11 +25,11 @@ export default function WeatherWidget(){
         const data = await responce.json()
         setCity(data.address.city)
     }
-    userCoords().then(fetchGeo).catch((err) => {
+    userCoords().then(fetchGeo).catch(() => {
         setCity('Tyumen')
     })
     },[])
-    
+
     useEffect(() => {
         const abortController = new AbortController();
         const fetchWeather = async () => {

@@ -6,10 +6,10 @@ import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { useEffect, useLayoutEffect } from 'react';
 import { useHandlers } from '../pages/Container';
 export default function Card({ id, images, make, model, price, isSpecialOffer, cart, setCart } : CardDataType & { cart:CartType, setCart: React.Dispatch<React.SetStateAction<CartType>>}) {
-    const [isCardHovered,setIsCardHovered] = useState(false);
-    const [isFavourite,setIsFavourite] =  useState(false);
-    const [isAdded,setIsAdded] =  useState(false);
-    const [currentImageIndex, setCurrentImageIndex] = useState(0);
+    const [isCardHovered,setIsCardHovered] = useState<boolean>(false);
+    const [isFavourite,setIsFavourite] =  useState<boolean>(false);
+    const [isAdded,setIsAdded] =  useState<boolean>(false);
+    const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
     
     const { handleAdding,handleDeleting } = useHandlers()
 

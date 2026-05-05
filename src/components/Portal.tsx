@@ -1,10 +1,11 @@
 import { createPortal } from 'react-dom'
-import { useEffect, useRef, useState } from 'react';
+import { ReactNode, useEffect, useRef, useState } from 'react';
+// @ts-expect-error - CSS import
 import '../styles/Portal.css'
 
-export default function Portal({ children, onClose }) {
-    const portalRootRef = useRef(null);
-    const [isMounted, setIsMounted] = useState(false);
+export default function Portal({ children, onClose } : {children: ReactNode}) {
+    const portalRootRef = useRef<HTMLDivElement | null>(null);
+    const [isMounted, setIsMounted] = useState<boolean>(false);
     useEffect(() => {
 
         const portalRoot = document.createElement('div')
@@ -17,7 +18,6 @@ export default function Portal({ children, onClose }) {
         const handleKey = (e) => {
             if(e.key == 'Escape') {
                 onClose()
-                console.log(portalRootRef.current)
             }
         }
     document.addEventListener('keydown', handleKey);

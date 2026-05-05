@@ -1,10 +1,11 @@
+// @ts-expect-error - CSS import
 import '../styles/Filter.css'
 import { useRef, useState, useCallback } from 'react'
-export default function Filter({ category,setProducts,products,originalProducts }) {
+export default function Filter({ category,setProducts,products,originalProducts } : {category : string, setProducts: React.Dispatch<React.SetStateAction<ProductsArrayType>>, products: ProductsArrayType,originalProducts : ProductsArrayType}) {
 
-    const brandFilter = useRef(null)
-    const minNumber = useRef(null)
-    const maxNumber = useRef(null)
+    const brandFilter = useRef<HTMLSelectElement>(null)
+    const minNumber = useRef<HTMLInputElement>(null)
+    const maxNumber = useRef<HTMLInputElement>(null)
 
     const filter = () => { // надо ли стабильной делать эту ссылку? я вот подумал что это не очень то и нужно конкретно здесь
         const brand = brandFilter.current?.value
@@ -46,8 +47,8 @@ export default function Filter({ category,setProducts,products,originalProducts 
             </div>
             <div style={{marginTop:"14px"}}>
                 <p>Price Range</p>
-                <input type="number" placeholder={0} style={{marginRight:"8px"}} className="priceInput" ref={minNumber}/>
-                <input type="number" placeholder={5000} className="priceInput" ref={maxNumber}/>
+                <input type="number" placeholder={'0'} style={{marginRight:"8px"}} className="priceInput" ref={minNumber}/>
+                <input type="number" placeholder={'5000'} className="priceInput" ref={maxNumber}/>
             </div>
             <button className="addButton" onClick={() => {filter()}}>Apply Filters</button>
         </div>

@@ -1,9 +1,10 @@
+// @ts-expect-error - CSS import
 import "../styles/inCartItems.css"
 import { FaRegTrashCan } from "react-icons/fa6";
 import { useHandlers } from '../pages/Container';
-export default function InCartItems({id, quantity, setCart, cart, product}){
+export default function InCartItems({id, quantity, setCart, cart, product} : {id:number,quantity:number,setCart:React.Dispatch<React.SetStateAction<CartType>>, cart:CartType, product:ProductType}){
     const {handleAdding,handleDeleting} = useHandlers()
-    const cleanItemHandler = (cart) => {
+    const cleanItemHandler = (cart : CartType) => {
         const newCart = {... cart}
         delete newCart[id]
         setCart(newCart)
