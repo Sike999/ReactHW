@@ -1,4 +1,4 @@
- const products = [ 
+ const productsData = [ 
  { id: 1, category: "tv", make: "Samsung", model: 'QLED 4K Q80C 65"', price: 1299, images: ["https://images.unsplash.com/photo-1615210230840-69c07c13b4d1?w=400&q=80","https://images.unsplash.com/photo-1558888401-3cc1de77652d?w=400&q=80","https://images.unsplash.com/photo-1593361351718-6b853f7b3431?w=400&q=80"], isSpecialOffer: true, brand: "Samsung" },
  { id: 2, category: "tv", make: "LG", model: 'OLED C3 55"', price: 1499, images: ["https://images.unsplash.com/photo-1558888401-3cc1de77652d?w=400&q=80","https://images.unsplash.com/photo-1615210230840-69c07c13b4d1?w=400&q=80"], brand: "LG" }, 
  { id: 3, category: "tv", make: "Sony", model: 'Bravia XR A80L 65"', price: 1899, images: ["https://images.unsplash.com/photo-1593361351718-6b853f7b3431?w=400&q=80"], isSpecialOffer: true, brand: "Sony" }, 
@@ -24,4 +24,4 @@
  { id: 23, category: "laptop", make: "Microsoft", model: "Surface Laptop 5", price: 1299, images: ["https://images.unsplash.com/photo-1651614422674-1f51818f27b1?w=400&q=80"], brand: "Microsoft" }, 
  { id: 24, category: "laptop", make: "Acer", model: "Swift X 14", price: 899, images: ["https://images.unsplash.com/photo-1585645982492-639c028b8a10?w=400&q=80","https://images.unsplash.com/photo-1675668409245-955188b96bf6?w=400&q=80"], isSpecialOffer: true, brand: "Acer" }, 
 ];
-export default products;
+export default productsData;

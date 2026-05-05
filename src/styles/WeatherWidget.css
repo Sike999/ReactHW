@@ -1,0 +1,10 @@
+.weatherBlock{
+    color: #fff;
+    width: 252px;
+    background-color: #9DC4F9;
+    margin-top:12px;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    min-height: 329px;
+}

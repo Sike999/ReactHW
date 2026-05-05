@@ -1,0 +1,10 @@
+.emptyCart {
+    height:500px;
+    display:flex;
+    flex-direction:column;
+    margin:100px auto;
+}
+.itemsAndSummary {
+    display: flex;
+    width: 1130px;
+}
