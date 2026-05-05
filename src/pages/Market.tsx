@@ -2,11 +2,11 @@ import Filter from '../components/Filter.jsx'
 import RedBanner from '../components/RedBanner.jsx'
 import Card from '../components/Card.jsx'
 import WeatherWidget from '../components/WeatherWidget.jsx'
+// @ts-expect-error - CSS import
 import '../styles/Market.css'
-import { useCallback, useLayoutEffect, useState, useMemo, useRef } from 'react'
+import { useState, useMemo, } from 'react'
 
-export default function Market({setProducts,products,originalProducts,cart,setCart,category,setCategory}){
-    const sortRef = useRef(null)
+export default function Market({setProducts,products,originalProducts,cart,setCart,category} : {setProducts: React.Dispatch<React.SetStateAction<ProductsArrayType>>,products: ProductsArrayType,originalProducts: ProductsArrayType,cart: CartType,setCart: React.Dispatch<React.SetStateAction<CartType>>,category: string}){
     const [sortValue, setSortValue] = useState('Low to High')
     const [showBanner, setShowBanner] = useState(true)
     const sortedProducts = useMemo(() => {
@@ -38,7 +38,7 @@ export default function Market({setProducts,products,originalProducts,cart,setCa
                     </div>
                 </div>
                 <div className='cardSection'>
-                    {sortedProducts.map((element, index) => (
+                    {sortedProducts.map((element) => (
                         <Card key={element.id} cart={cart} id = {element.id} setCart={setCart} images={element.images} make={element.make} model={element.model} price={element.price} isSpecialOffer={element.isSpecialOffer}/>
                     ))}
                 </div>

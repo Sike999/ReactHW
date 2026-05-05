@@ -1,16 +1,17 @@
+// @ts-expect-error - CSS import
 import '../styles/Card.css'
 import { useState } from 'react';
 import { AiOutlineHeart, AiFillHeart, } from "react-icons/ai";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import { useEffect, useLayoutEffect, memo } from 'react';
+import { useEffect, useLayoutEffect } from 'react';
 import { useHandlers } from '../pages/Container';
-export default function Card({ id, images, make, model, price, isSpecialOffer, cart, setCart }) {
+export default function Card({ id, images, make, model, price, isSpecialOffer, cart, setCart } : CardDataType & { cart:CartType, setCart: React.Dispatch<React.SetStateAction<CartType>>}) {
     const [isCardHovered,setIsCardHovered] = useState(false);
     const [isFavourite,setIsFavourite] =  useState(false);
     const [isAdded,setIsAdded] =  useState(false);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     
-    const {handleAdding,handleDeleting} = useHandlers()
+    const { handleAdding,handleDeleting } = useHandlers()
 
     useEffect(() =>{
             if(cart[id] === undefined) {

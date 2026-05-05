@@ -1,7 +1,6 @@
-import { useState,useMemo, useRef } from 'react'
+import { useState, useRef } from 'react'
 import productsData from './data/products.js' 
-import Container from './pages/Container.jsx'
-import './App.css'
+import Container from './pages/Container.js'
 
 
 
